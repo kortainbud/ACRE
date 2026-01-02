@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$ACRE | Invest in the Yokaiverse</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        .gold-gradient {
+            background: linear-gradient(90deg, #EAB308 0%, #FDE047 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border {
+            border: 1px solid rgba(234, 179, 8, 0.2);
+        }
+        .gold-border:hover {
+            border-color: rgba(234, 179, 8, 0.6);
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Wireframe Terrain Effect */
+        .wireframe-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(153, 27, 27, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(153, 27, 27, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: perspective(500px) rotateX(60deg);
+            transform-origin: top;
+            z-index: -1;
+            mask-image: linear-gradient(to bottom, transparent, black, transparent);
+        }
+
+        .terrain-lines {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 400px;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PHBhdGggZD0iTTAgNDBDMjAwIDgwIDMwMCAyMCA1MDAgNjBTODAwIDgwIDEwMDAgNDBWMTAwSDBWMHoiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgxNTMsIDI3LCAyNywgMC4yKSIgc3Ryb2tlLXdpZHRoPSIwLjUiLz48cGF0aCBkPSJNMCA2MEMyMDAgMjAgMzAwIDgwIDUwMCA0MFM4MDAgMjAgMTAwMCA2MFYxMDBIMFYweiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDE1MywgMjcsIDI3LCAwLjEpIiBzdHJva2Utd2lkdGg9IjAuNSIvPjwvc3ZnPg==');
+            background-size: 200% 100%;
+            animation: move-terrain 20s linear infinite;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        @keyframes move-terrain {
+            from { background-position: 0% 0; }
+            to { background-position: 200% 0; }
+        }
+
+        @keyframes subtle-float {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-15px) rotate(1deg); }
+        }
+        .float-anim {
+            animation: subtle-float 8s ease-in-out infinite;
+        }
+
+        .hologram-glow {
+            box-shadow: 0 0 50px rgba(153, 27, 27, 0.1);
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3"
+  }
+}
+</script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>

@@ -1,24 +1,18 @@
 
 import React from 'react';
+import { ViewType } from '../App';
 
 interface HeaderProps {
   scrolled: boolean;
-  onNavigate: (view: 'home' | 'map') => void;
-  currentView: 'home' | 'map';
+  onNavigate: (view: ViewType) => void;
+  currentView: ViewType;
 }
 
 const Header: React.FC<HeaderProps> = ({ scrolled, onNavigate, currentView }) => {
-  const navItems = [
-    { name: 'Features', href: '#features', view: 'home' },
-    { name: 'Market', href: '#market', view: 'home' },
-    { name: 'Stats', href: '#stats', view: 'home' },
-    { name: 'Roadmap', href: '#roadmap', view: 'home' },
-  ];
-
   return (
     <header 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled || currentView === 'map' ? 'bg-black/80 backdrop-blur-md py-4 border-b border-white/10' : 'bg-transparent py-6'
+        scrolled || currentView !== 'home' ? 'bg-black/80 backdrop-blur-md py-4 border-b border-white/10' : 'bg-transparent py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
@@ -31,32 +25,38 @@ const Header: React.FC<HeaderProps> = ({ scrolled, onNavigate, currentView }) =>
         </button>
 
         <nav className="hidden md:flex items-center gap-8">
-          {currentView === 'home' ? (
-            navItems.map((item) => (
-              <a 
-                key={item.name} 
-                href={item.href}
-                className="text-xs font-black uppercase tracking-[0.2em] text-gray-400 hover:text-yellow-500 transition-colors"
-              >
-                {item.name}
-              </a>
-            ))
-          ) : (
-            <button 
-              onClick={() => onNavigate('home')}
-              className="text-xs font-black uppercase tracking-[0.2em] text-gray-400 hover:text-yellow-500 transition-colors"
-            >
-              Back to Overview
-            </button>
-          )}
+          <button 
+            onClick={() => onNavigate('home')}
+            className={`text-xs font-black uppercase tracking-[0.2em] transition-colors ${currentView === 'home' ? 'text-yellow-500' : 'text-gray-400 hover:text-white'}`}
+          >
+            Overview
+          </button>
+          <button 
+            onClick={() => onNavigate('marketplace')}
+            className={`text-xs font-black uppercase tracking-[0.2em] transition-colors ${currentView === 'marketplace' ? 'text-yellow-500' : 'text-gray-400 hover:text-white'}`}
+          >
+            Marketplace
+          </button>
+          <button 
+            onClick={() => onNavigate('staking')}
+            className={`text-xs font-black uppercase tracking-[0.2em] transition-colors ${currentView === 'staking' ? 'text-yellow-500' : 'text-gray-400 hover:text-white'}`}
+          >
+            Staking
+          </button>
+          <button 
+            onClick={() => onNavigate('governance')}
+            className={`text-xs font-black uppercase tracking-[0.2em] transition-colors ${currentView === 'governance' ? 'text-yellow-500' : 'text-gray-400 hover:text-white'}`}
+          >
+            DAO
+          </button>
         </nav>
 
         <div className="flex items-center gap-4">
           <button 
             onClick={() => onNavigate('map')}
-            className={`px-5 py-2 border ${currentView === 'map' ? 'bg-yellow-500 text-black' : 'border-yellow-500/50 text-yellow-500'} text-[10px] font-black rounded-sm hover:bg-yellow-400 hover:text-black transition-all uppercase tracking-[0.2em]`}
+            className={`px-5 py-2 border ${currentView === 'map' ? 'bg-yellow-500 text-black border-yellow-500' : 'border-yellow-500/50 text-yellow-500'} text-[10px] font-black rounded-sm hover:bg-yellow-400 hover:text-black transition-all uppercase tracking-[0.2em]`}
           >
-            {currentView === 'map' ? 'Map Active' : 'Explore Map'}
+            {currentView === 'map' ? 'MAP VIEW' : 'EXPLORE MAP'}
           </button>
         </div>
       </div>

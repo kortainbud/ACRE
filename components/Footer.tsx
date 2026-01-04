@@ -1,9 +1,14 @@
 
 import React from 'react';
+import { ViewType } from '../App';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  onNavigate: (view: ViewType) => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   return (
-    <footer className="pt-24 pb-12 px-6 border-t border-white/5">
+    <footer className="pt-24 pb-12 px-6 border-t border-white/5 relative z-10 bg-[#050505]">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-4 gap-12 mb-24">
           <div className="col-span-2">
@@ -26,10 +31,10 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="font-bold mb-6 text-sm uppercase tracking-widest text-yellow-500">Platform</h4>
             <ul className="space-y-4 text-sm text-gray-500">
-              <li><a href="#" className="hover:text-white transition-colors">Explorer</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Marketplace</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Staking</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Governance</a></li>
+              <li><button onClick={() => onNavigate('map')} className="hover:text-white transition-colors">Explorer</button></li>
+              <li><button onClick={() => onNavigate('marketplace')} className="hover:text-white transition-colors">Marketplace</button></li>
+              <li><button onClick={() => onNavigate('staking')} className="hover:text-white transition-colors">Staking</button></li>
+              <li><button onClick={() => onNavigate('governance')} className="hover:text-white transition-colors">Governance</button></li>
             </ul>
           </div>
 
